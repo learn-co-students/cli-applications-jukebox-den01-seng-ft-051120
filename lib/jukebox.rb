@@ -127,12 +127,14 @@ def play_command(songs)
   input = get_input; 
   song_count = (1..songs.length).to_a;
   song_count = song_count.map(&:to_s);
-  until (songs.include?(input) || song_count.include?(input)) do
-    puts "Invalid input, please try again"
+  until (songs.include?(input) || song_count.include?(input) || input == 'exit') do
+    puts "Invalid input, please try again, or 'exit'"
     input = get_input; 
   end 
   if songs.include?(input) 
     puts "Playing #{songs[songs.find_index(input)]}"
+  elseif input == 'exit'
+    puts "Leaving play command"
   else 
     puts "Playing #{songs.fetch(input.to_i - 1)}"
   end 
